@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录页面</title>
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .header {
+            text-align: center;
+            width: 100%;
+            font-size: 52px;
+            position: absolute;
+            top: 10px;
+            left: 0;
+        }
+        .login {
+            width: 600px;
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            background-color: white;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .login label {
+            font-weight: bold;
+        }
+        .login input {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .login button {
+            width: 60%;
+            padding: 10px;
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .login button:hover {
+            background-color: #00008B;
+        }
+        .login a {
+            display: inline-block;
+            margin-top: 50px;
+            color: #0056b3;
+            font-size: 14px;
+            text-decoration: none;
+            margin: 0 auto;
+        }
+        .login a:hover {
+            text-decoration: underline;
+        }
+        .user-login {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #0056b3;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .user-login:hover {
+            background-color: #00008B;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">SPORTS CENTER</div>
+<a th:href="@{/login}" class="user-login">USER LOGIN</a>
+
+
+<div class="login">
+    <form action="/submit-admin-login" method="post">
+        <div class="login-form">
+            <h2>ADMIN LOGIN</h2>
+            <label for="userID">User ID:</label>
+            <input type="text" id="userID" placeholder="Student/Teacher ID" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" placeholder="Password Number" required>
+            <p></p>
+            <button type="submit">Login</button>
+            <p></p>
+            <a href="forgotpassword.html">Forgot Password</a> |
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

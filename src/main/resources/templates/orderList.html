@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stadium Order Interface by Administrator</title>
+  <link rel="stylesheet" href="css\book.css">
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+
+    .search-container {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .search-input {
+      padding: 8px;
+      width: 50%;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    .button {
+      padding: 6px 12px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      background-color: #45a049;
+    }
+
+  </style>
+</head>
+<body>
+<div class="topLine">
+  Sports reservation center
+</div>
+<header>
+  <div class="nav">
+    <div class="nav-item nav-item-active">
+      <div class="nav-item-icons">
+        <img class="nav-item-icon" src="pic\nav1.png" alt="">
+        <img class="nav-item-icon-select" src="pic\nav1-select.png" alt="">
+      </div>
+      <div class="nav-item-title"><a th:href="@{/Basketball}">Basketball</a></div>
+    </div>
+    <div class="nav-item">
+      <div class="nav-item-icons">
+        <img class="nav-item-icon" src="pic\nav2.png" alt="">
+        <img class="nav-item-icon-select" src="pic\nav2-select.png" alt="">
+      </div>
+      <div class="nav-item-title"><a th:href="@{/badminton}">badminton</a></div>
+    </div>
+    <div class="nav-item">
+      <div class="nav-item-icons">
+        <img class="nav-item-icon" src="pic\nav3.png" alt="">
+        <img class="nav-item-icon-select" src="pic\nav3-select.png" alt="">
+      </div>
+      <div class="nav-item-title"><a th:href="@{/tennis}">tennis</a></div>
+    </div>
+
+    <div class="nav-item">
+      <div class="nav-item-icons">
+        <img class="nav-item-icon" src="pic\nav5.png" alt="">
+        <img class="nav-item-icon-select" src="pic\nav5-select.png" alt="">
+
+      </div>
+      <div class="nav-item-title"><a th:href="@{/PingPang}">PingPang</a></div>
+    </div>
+
+    <div class="nav-item">
+      <div class="nav-item-icons">
+        <img class="nav-item-icon" src="pic\nav6.png" alt="">
+        <img class="nav-item-icon-select" src="pic\nav6-select.png" alt="">
+      </div>
+      <div class="nav-item-title"><a th:href="@{/gym}">gym</a></div>
+    </div>
+
+
+    <div class="nav-item">
+      <div class="nav-item-icons">
+        <img class="nav-item-icon" src="pic\nav8.png" alt="">
+        <img class="nav-item-icon-select" src="pic\nav8-select.png" alt="">
+      </div>
+      <div class="nav-item-title"><a th:href="@{/WuShu}">WuShu</a></div>
+    </div>
+    <div class="nav-item">
+      <div class="nav-item-icons">
+        <img class="nav-item-icon" src="pic\nav8.png" alt="">
+        <img class="nav-item-icon-select" src="pic\nav8-select.png" alt="">
+      </div>
+      <div class="nav-item-title"><a th:href="@{/orderList}">Order</a></div>
+    </div>
+  </div>
+</header>
+
+<div class="search-container">
+  <input type="text" class="search-input" id="searchInput" placeholder="Search for sports activities...">
+</div>
+
+<table id="orderTable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Order Name</th>
+    <th>Order Time</th>
+    <th>Total Money</th>
+    <th>Order Status</th>
+  </tr>
+  </thead>
+  <tbody id="orderTableBody">
+
+  </tbody>
+</table>
+
+<!-- <script src="order.js"></script> -->
+<script>
+
+  let dummyOrders = [];
+
+  function getOrderListByUser() {
+    fetch('/userOrders')
+            .then(response => response.json())
+            .then(data => {
+              dummyOrders = data;
+              renderOrders("");
+            })
+            .catch(error => {
+              console.error('Error:', error);
+            });
+  }
+
+  getOrderListByUser();
+
+
+  function renderOrders(searchTerm) {
+    const orderTableBody = document.getElementById("orderTableBody");
+    orderTableBody.innerHTML = "";
+
+    let totalMoney = 0;
+
+    let found = false;
+    console.log(dummyOrders)
+    dummyOrders.forEach(order => {
+
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${order.id}</td>
+          <td>${order.sportName}</td>
+          <td>${order.orderTime}</td>
+          <td>${order.money}</td>
+          <td>${order.orderStatus}</td>
+        `;
+        orderTableBody.appendChild(row);
+        totalMoney += order.money;
+        found = true;
+    });
+
+
+    if (!found) {
+      const noMatchRow = document.createElement("tr");
+      noMatchRow.innerHTML = `
+        <td colspan="6">No activities found. Please try a different search.</td>
+      `;
+      orderTableBody.appendChild(noMatchRow);
+    }
+
+
+    const totalRow = document.createElement("tr");
+    totalRow.innerHTML = `
+      <td colspan="4"></td>
+      <td>Total: ${totalMoney.toFixed(2)}</td>
+      <td></td>
+    `;
+    orderTableBody.appendChild(totalRow);
+  }
+
+  renderOrders("");
+
+  const searchInput = document.getElementById("searchInput");
+  searchInput.addEventListener("input", function() {
+    renderOrders(this.value);
+  });
+
+</script>
+</body>
+</html>

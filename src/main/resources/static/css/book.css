@@ -1,0 +1,382 @@
+
+.topLine {
+    margin: 15px;
+    font-size: 40px;
+    height: 50px;
+    text-align: center;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    background-color: #000443;
+}
+
+.nav {
+    width: 1260px;
+    height: 90px;
+    margin: 0 auto;
+    display: flex;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    width: 105px;
+    height: 100%;
+    text-align: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.nav-item-icons {
+    margin-bottom: 4px;
+    text-align: center;
+}
+
+.nav-item-icons > img {
+    width: 24px;
+    height: 24px;
+}
+
+.nav-item-icon-select {
+    display: none;
+}
+
+.nav-item-title {
+    color: #fff;
+}
+
+.nav-item-more {
+    width: 105px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.nav-item-more .nav-item-icon {
+    width: 20px;
+    height: 8px;
+    margin: 8px 0;
+}
+
+.nav-item-more .nav-item-title {
+    color: #999;
+}
+
+.nav-item-active .nav-item-icon {
+    display: none;
+}
+
+.nav-item-active .nav-item-icon-select {
+    display: inline-block;
+}
+
+.nav-item-active .nav-item-title {
+    color: #000443;
+}
+
+.nav-item-title a {
+    /*display:block ;*/
+    color: #e8e7ec;
+    text-decoration: none; /*去掉链接默认样式*/
+    text-align: center;
+    padding: 14px 16px;
+}
+
+
+.sports table {
+    float: left;
+}
+
+.sports table {
+    height: 500px;
+    width: 300px;
+    float: left;
+    list-style-type: none;
+    padding: 40px;
+    margin: 0;
+    overflow: hidden;
+}
+
+input[type="checkbox"] {
+    display: inline-block;
+    width: 50px;
+    height: 25px;
+}
+
+
+.sports #totalBooking {
+    float: right;
+    width: 400px;
+    border-style: groove;
+    border-color: antiquewhite;
+    margin: 20px;
+    height: 400px;
+}
+
+#totalBooking p {
+    padding: 10px;
+}
+
+
+.main-box {
+    width: 1260px;
+    margin: 0 auto;
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.main-left {
+    width: 820px;
+}
+
+.main-right {
+    width: 440px;
+}
+
+.timenav {
+    background-color: #F0EFF5;
+    border-radius: 4px;
+    height: 63px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.timenav-select {
+    display: flex;
+    margin: 10px 0;
+    margin-left: 10px;
+}
+
+.time-nav-select-box { /*book那里*/
+    padding: 10px 20px;
+    background-color: #fff;
+    border-left: 1px solid #000443;
+    border-top: 1px solid #000443;
+    border-bottom: 1px solid #000443;
+    border-right: 1px solid #000443;
+    color: #666;
+    cursor: pointer;
+}
+
+.timenav-session { /*一整个选日期那一框*/
+    text-decoration: none;
+    list-style-type: none;
+    display: inline-block;
+    margin-right: 10px;
+    height: 100%;
+    align-items: center;
+}
+
+.timenav-session-box {
+    text-decoration: none;
+    list-style-type: none;
+    display: inline-block;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    width: 700px;
+    margin: 0 12px;
+}
+
+.timenav-session-item {
+    height: 100%;
+    display: inline-block;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 2px;
+    cursor: pointer;
+}
+
+.timenav-session-item .timenav-session-title a {
+    text-decoration: none; /*去掉链接默认样式*/
+    display: inline-block;
+    color: #080808; /*字体颜色*/
+    text-align: center;
+    padding: 10px 10px;
+}
+
+.timenav-session-item .timenav-session-title a:hover {
+    /*选中后的效果*/
+    background-color: #6589c0;
+    color: #040a48;
+}
+
+#totalBooking { /*右边算总价钱那一筐*/
+    float: right;
+    width: 25%;
+    border-style: groove;
+    border-color: antiquewhite;
+    margin: 20px;
+    height: 400px;
+    text-align: center;
+    padding-top: 15%;
+}
+
+#totalBooking p {
+    padding: 10px;
+}
+
+.field { /*篮球场地那边的选择框*/
+    display: flex;
+    margin: 30px 0;
+}
+
+.field-button {
+    padding: 8px 20px;
+    border-radius: 20px;
+    background-color: #EFEFF5;
+}
+
+.field-button:first-child {
+    margin-right: 24px;
+}
+
+.field-active {
+    background-color: #fff;
+    border: 1px solid #000443;
+}
+
+/*可选不可选那边的图像*/
+.example-container {
+    display: flex;
+    justify-content: center;
+}
+
+.example-container > div {
+    display: flex;
+    align-items: center;
+}
+
+.example-box {
+    width: 14px;
+    height: 14px;
+    background-color: #f2ecf2;
+}
+
+.example-text {
+    font-size: 14px;
+    color: #999;
+    margin-left: 8px;
+}
+
+.example1,
+.example2 {
+    margin-right: 30px;
+}
+
+.example2 .example-box {
+    background-color: #2260e7;
+    text-align: center;
+    position: relative;
+    color: #f5ebeb;;
+}
+
+.example2 .example-box::after {
+    content: ' ';
+    position: absolute;
+    display: inline-block;
+    width: 8px;
+    height: 4px;
+    border-width: 0 0 2px 2px;
+    overflow: hidden;
+    border-color: 000;
+    border-style: solid;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    left: 2px;
+    top: 2px;
+}
+
+.example3 .example-box {
+    background-color: #7e7b7b;
+}
+
+.confirm-button button {
+    background-color: #85a5d4;
+    margin: 40px;
+    width: 90px;
+    height: 40px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.middle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20vh;
+}
+
+.item {
+    width: 800px;
+    height: 90px;
+    border: 2px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.item .name, .item .price, .item .time {
+    display: inline-block;
+    padding-left: 20px;
+    padding-top: 20px;
+    font-size: 20px;
+}
+
+.item .quantity {
+    display: inline-block;
+    padding-left: 20px;
+    padding-top: 20px;
+    font-size: 20px;
+}
+
+.item .pri, .item .quantity {
+    padding-left: 60px;
+}
+
+.item input {
+    height: 30px;
+    margin-left: 25px;
+}
+
+.item button {
+    background-color: #d2d3d5;
+
+    width: 80px;
+    height: 30px;
+}
+
+#totalBooking .total {
+    font-weight: bold;
+}

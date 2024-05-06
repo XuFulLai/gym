@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaxia.order.mapper.OrderMapper">
+
+    <resultMap id="BaseResultMap" type="com.xiaxia.order.domain.Order">
+        <id property="id" column="id" jdbcType="BIGINT"/>
+        <result property="orderNo" column="order_no" jdbcType="VARCHAR"/>
+        <result property="orderTime" column="order_time" jdbcType="TIMESTAMP"/>
+        <result property="money" column="money" jdbcType="VARCHAR"/>
+        <result property="sportName" column="sport_name" jdbcType="VARCHAR"/>
+        <result property="orderStatus" column="order_status" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,order_no,order_time,money,sport_name,order_status
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from order_info
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <select id="list" resultType="com.xiaxia.order.domain.Order">
+        select
+        <include refid="Base_Column_List"/>
+        from order_info
+        <where>
+            <if test="orderNo != null and orderNo != ''">
+                and order_no = #{orderNo,jdbcType=VARCHAR}
+            </if>
+            <if test="orderTime != null">
+                and order_time = #{orderTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="sportName != null and sportName != ''">
+                and sportName = #{sportName,jdbcType=VARCHAR}
+            </if>
+            <if test="userId != null and userId != ''">
+                and user_id = #{userId,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+    <select id="getUserOrders" resultType="com.xiaxia.order.domain.Order">
+        select
+        <include refid="Base_Column_List"/>
+        from order_info
+        where user_id = #{userId,jdbcType=VARCHAR}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete
+        from order_info
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.xiaxia.order.domain.Order"
+            useGeneratedKeys="true">
+        insert into order_info
+        ( id, order_no, order_time
+        , money, sport_name, order_status, court, user_id)
+        values ( #{id,jdbcType=BIGINT}, #{orderNo,jdbcType=VARCHAR}, #{orderTime,jdbcType=TIMESTAMP}
+               , #{money,jdbcType=VARCHAR}, #{sportName,jdbcType=VARCHAR}, #{orderStatus,jdbcType=VARCHAR}
+               , #{court,jdbcType=INTEGER}
+               , #{userId,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.xiaxia.order.domain.Order"
+            useGeneratedKeys="true">
+        insert into order_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="orderNo != null">order_no,</if>
+            <if test="orderTime != null">order_time,</if>
+            <if test="money != null">money,</if>
+            <if test="sportName != null">sport_name,</if>
+            <if test="orderStatus != null">order_status,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id,jdbcType=BIGINT},</if>
+            <if test="orderNo != null">#{orderNo,jdbcType=VARCHAR},</if>
+            <if test="orderTime != null">#{orderTime,jdbcType=TIMESTAMP},</if>
+            <if test="money != null">#{money,jdbcType=VARCHAR},</if>
+            <if test="sportName != null">#{sportName,jdbcType=VARCHAR},</if>
+            <if test="orderStatus != null">#{orderStatus,jdbcType=VARCHAR},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.xiaxia.order.domain.Order">
+        update order_info
+        <set>
+            <if test="orderNo != null">
+                order_no = #{orderNo,jdbcType=VARCHAR},
+            </if>
+            <if test="orderTime != null">
+                order_time = #{orderTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="money != null">
+                money = #{money,jdbcType=VARCHAR},
+            </if>
+            <if test="sportName != null">
+                sport_name = #{sportName,jdbcType=VARCHAR},
+            </if>
+            <if test="orderStatus != null">
+                order_status = #{orderStatus,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.xiaxia.order.domain.Order">
+        update order_info
+        set order_no     = #{orderNo,jdbcType=VARCHAR},
+            order_time   = #{orderTime,jdbcType=TIMESTAMP},
+            money        = #{money,jdbcType=VARCHAR},
+            sport_name   = #{sportName,jdbcType=VARCHAR},
+            order_status = #{orderStatus,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+</mapper>
